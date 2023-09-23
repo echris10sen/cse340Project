@@ -12,32 +12,32 @@
 
 :root {
     --primary-color: white;
-    --secondary-color: lightskyblue;
+    --secondary-color: #4c96d7;
     --accent1-color: midnightblue;
     --text1-color: black;
     --text2-color: white;
-    --text-hero-color: lightskyblue;
+    --text-hero-color: #4c96d7;
     --heading-font: Roboto, sans-serif;
     --paragraph-font:Roboto, Helvetica, sans-serif;
 }
-
-/* Vanilla */
-body {
-  background-image: url("../images/site/small_check.jpg");
+html, body {
+  background-color: var(--primary-color);
+  margin: 0;
+  padding: 0 .5rem;
 }
-
+/* Vanilla */
 nav {
   background-color: var(--primary-color);
 }
 
-ul {
-  margin: 0 auto 0 auto;
+h1 {
+  font-family: var(--heading-font);
+  font-size: x-large;
+  width: fit-content;
 }
 
 footer {
-  background-color: var(--primary-color);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  /* background-color: var(--primary-color); */
   padding: 1rem 0 1rem 0;
 }
 
@@ -50,7 +50,7 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  max-width: 95%;
+  margin: 0 auto 0 auto;
 }
 
 #navbar li {
@@ -83,13 +83,91 @@ footer {
   flex-direction: row;
 }
 
-#wrapper {
-  border: var(--secondary-color) solid 5px;
-  border-radius: 4px;
+#own-today {
+  max-width: 75%;
+  position: relative;
+  display: block;
+}
+
+#upgrade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem;
+}
+
+#upgrade-grid .card .imgContainer .img {
+  display: inline;
+  vertical-align: middle;
+}
+
+
+#upgrade-grid .card .imgContainer {
+  border: var(--accent1-color) 2px solid;
   background-color: var(--secondary-color);
+  padding: .5rem;
+  height: calc(100% - 1.5rem);
+}
+
+#upgrade-grid .card a {
+  border: var(--primary-color) 2px solid;
+  margin-bottom: 0;
+  color: var(--accent1-color)
+}
+
+#upgrade-grid .card img, a {
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-family: var(--paragraph-font);
 }
 
 /* These are classes */
+.hero .card p {
+  margin: .5rem;
+  font-family: var(--paragraph-font);
+  font-weight: bold;
+  color: var(--text-hero-color);
+}
+
+.hero .card h1 {
+  color: var(--text-hero-color);
+}
+
+.copyright {
+  margin: 0 0 0 1rem;
+  font-family: var(--paragraph-font);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  flex: 1;
+  flex-basis: content;
+  height: fit-content;
+}
+
+.hero .card {
+  background-color: var(--primary-color);
+  background: rgba(255, 255, 255, .5);
+  width: 160px;
+  /* height: 400px;   */
+  position: absolute;
+  z-index: 999;
+}
+
+.heroImg {
+  position: relative;
+  max-width: 100%;
+  width: 80%;
+  margin: 1.5rem auto auto 4rem;  
+}
+
+.review {
+  font-family: var(--paragraph-font);
+}
 
 .siteName a {
   text-decoration: none;
@@ -100,7 +178,4 @@ footer {
   margin: 2rem 1rem 1rem 1rem;
 }
 
-.copyright {
-  margin: 0 0 0 1rem;
-  font-family: var(--paragraph-font);
-}
+
