@@ -72,7 +72,7 @@
     .upgrade {
         grid-column: 1/2;
         grid-row: 2/3;
-        margin: auto inherit auto inherit;
+        margin: inherit;
     }
 
 }
