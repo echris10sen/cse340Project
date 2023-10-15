@@ -26,6 +26,7 @@ async function getInventoryByClassificationId(classification_id) {
             AND i.classification_id = c.classification_id`,
             [classification_id]
         )
+        console.log(data.rows);
         return data.rows
     } catch (error) {
         console.error(`getclassificationbyid error ${error}`)
