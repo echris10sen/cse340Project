@@ -1,0 +1,9 @@
+<!-- If a title is passed to classification we make a header for it -->
+<% if (title) { %>
+ <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+}%>
+<%# messages() %>
+<%- grid %>
+

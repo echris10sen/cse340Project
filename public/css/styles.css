@@ -57,9 +57,13 @@ footer {
   text-align: center;
   background-color: var(--accent1-color);
   flex: 1;
+  padding: .5rem;
+}
+
+#navbar li a {
+  text-decoration: none;
   color: var(--text2-color);
   font-family: var(--paragraph-font);
-  padding: .5rem;
 }
 
 #tools {
