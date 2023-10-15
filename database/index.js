@@ -31,7 +31,8 @@ if (process.env.NODE_ENV == "development") {
     }
 } else {
     pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
+        // connectionString: process.env.DATABASE_URL,
+        connectionString: process.env.INTERNAL_URL
     })
     module.exports = pool
 }
