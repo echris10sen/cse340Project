@@ -1,6 +1,14 @@
 /* Imports */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
 
+/***********************************************
+ * Table of Contents
+ * root
+ * vanilla
+ * id's
+ * classes
+ ***********************************************/
+
 /******* Change Box Model ***************/
 *,
 *:before,
@@ -41,6 +49,12 @@ footer {
   padding: 1rem 0 1rem 0;
 }
 
+main li {
+  padding-inline-start: 0;
+  list-style-type: none;
+  border: 1px solid var(--accent1-color);
+  margin: .5rem
+}
 /**********************
  * These are ID's 
  **********************/
@@ -125,7 +139,20 @@ footer {
   font-family: var(--paragraph-font);
 }
 
-/* These are classes */
+/* ID's for individual pages */
+#inv_price {
+  font-size: xx-large;
+  color: var(--text2-color);
+  background-color: var(--text-hero-color);
+  text-align: center;
+  padding: 3rem;
+  margin: 15% auto 25% auto;
+  height: 50%;
+}
+
+/****************************************************
+ * These are classes 
+ ****************************************************/
 .hero .card p {
   margin: .5rem;
   font-family: var(--paragraph-font);
@@ -181,5 +208,6 @@ footer {
   font-weight: bold;
   margin: 2rem 1rem 1rem 1rem;
 }
+
 
 
