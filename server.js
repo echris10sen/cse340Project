@@ -3,16 +3,48 @@
  * application. It is used to control the project.
  *******************************************/
 /* ***********************
- * Require Statements
+ * Require Statements In alphebetical order
  *************************/
-const expressLayouts = require('express-ejs-layouts')
-const express = require("express")
-const env = require("dotenv").config()
+const accountRoute    = require('./routes/accountRoute');
+const baseController  = require('./controllers/baseController');
+const bodyParser      = require('body-parser');
+const colors          = require("colors");
+const env             = require("dotenv").config();
+const express         = require("express");
+const expressLayouts  = require('express-ejs-layouts');
+const inventoryRoute  = require('./routes/inventoryRoute');
+const pool            = require('./database/');
+const session         = require("express-session");
+const static          = require("./routes/static");
+const utilities       = require('./utilities/');
+
 const app = express()
-const static = require("./routes/static")
-const baseController = require('./controllers/baseController');
-const inventoryRoute = require('./routes/inventoryRoute');
-const utilities = require('./utilities/');
+// For simple Debugging
+colors.enable()
+
+/******************************************
+ * Middleware
+ *****************************************/
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name:'sessionId'
+}))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 /* ***********************
  * View Engine and Templates
@@ -29,6 +61,7 @@ app.use(static)
 // Index Route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
+app.use("/account", accountRoute)
 
 
 // File Not Found Route - Must be Last Route in List

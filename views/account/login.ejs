@@ -1,0 +1,26 @@
+<!-- If a title is passed to classification we make a header for it -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+   <% } else {
+       res.redirect('/')
+   }%>
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+<% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+<%  }) %>
+</ul>
+<% } %>
+<section>
+    <form id="loginForm" action="/account/login" method="post" class="form">
+        <label for="account_email">Email:</label>
+        <input type="email" id="account_email" name="account_email" required title="Please Enter your email" placeholder="i.e myemail@email.com" value="<%= locals.account_email %>">
+        <label for="account_password">Password:</label>
+        <input type="password" id="account_password" name="account_password" required title="Please enter your" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <button type="submit">Login</button>
+        <p>No account? <span><a href="../account/registration">Sign-up</a></span></p>
+    </form>
+    
+</section>

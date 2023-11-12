@@ -1,0 +1,2 @@
+login: css
+registration: input validation, toggle password

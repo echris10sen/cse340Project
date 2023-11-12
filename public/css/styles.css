@@ -55,6 +55,24 @@ main li {
   border: 1px solid var(--accent1-color);
   margin: .5rem
 }
+
+label {
+  display: block;
+}
+
+input:required:invalid, input:focus:invalid {
+  border: red solid 2px;
+  border-radius: 5px;
+  color: red;
+  outline: none;
+}
+
+input:required:valid {
+  border: green solid 2px;
+  border-radius: 5px;
+  color: red;
+  outline: none;
+}
 /**********************
  * These are ID's 
  **********************/
@@ -169,6 +187,53 @@ main li {
   font-family: var(--paragraph-font);
 }
 
+.form {
+  font-family: var(--paragraph-font);
+  background-color: var(--text-hero-color);
+  border: var(--accent1-color) solid 5px;
+  border-radius: 25px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.form > *{
+  display: block;
+  width: 75%;
+  margin: auto auto;
+}
+
+.form button {
+  display: block;
+  font-family: var(--paragraph-font);
+  width: auto;
+  margin: auto auto;
+}
+
+.form input{
+  margin-bottom: 1rem;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  border: 2px var(--accent1-color) solid;
+  outline: none;
+}
+
+.form p {
+  text-align: center;
+}
+
+.form a {
+  display: inline;
+  color: var(--text1-color)
+}
+
+.form button {
+  border: 2px var(--accent1-color) solid;
+  border-radius: 17px;
+  margin-bottom: 1rem;
+  padding: .25rem 1rem;
+  background-color: var(--primary-color);
+}
+
 .grid {
   display: flex;
   flex-direction: column;
@@ -196,8 +261,20 @@ main li {
   margin: 1.5rem auto auto 4rem;  
 }
 
+.notice li {
+  color: red;
+  font-weight: bold;
+  border: none;
+  font-family: var(--paragraph-font);
+}
+
 .review {
   font-family: var(--paragraph-font);
+  margin: 1rem;
+}
+
+.review li {
+  border: none;
 }
 
 .siteName a {
