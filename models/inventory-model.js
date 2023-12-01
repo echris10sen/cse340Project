@@ -34,6 +34,10 @@ async function getInventoryByClassificationId(classification_id) {
     }
 }
 
+
+/*************************************
+ * Get inventory items by inv_id
+ * ***********************************/
 async function getInventoryByInvId(inv_id) {
     try {
         const data = await pool.query(
@@ -47,6 +51,10 @@ async function getInventoryByInvId(inv_id) {
     }
 }
 
+
+/*************************************
+ * Add classification
+ * ***********************************/
 async function addClassification(classification_name) {
     try {
         const sql = `INSERT INTO classification (
@@ -61,6 +69,9 @@ async function addClassification(classification_name) {
     
 }
 
+/*************************************
+ * Add inventory
+ * ***********************************/
 async function addInventory(
     inv_make,
     inv_model, 
@@ -115,6 +126,9 @@ async function addInventory(
     
 }
 
+/*************************************
+ * Check existing classification name
+ * ***********************************/
 async function checkExistingName(classification_name){
     try {
         const sql = 'SELECT * FROM classification WHERE classification_name = $1'

@@ -44,6 +44,10 @@ Util.buildClassificationGrid = async function (data) {
     return grid
 }
 
+/**************************************
+ * Build the information for the detail view
+ * **************************************/
+
 Util.buildInformation = async function (data) {
     let view
     let item = data[0]

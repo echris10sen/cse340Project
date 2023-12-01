@@ -5,8 +5,11 @@ const regValidate   = require('../utilities/account-validation')
 const router        = new express.Router()
 const utils         = require('../utilities')
 
+// Routes
 router.get("/login", utils.handleErrors(accController.buildLogin))
 router.get("/registration", utils.handleErrors(accController.buildRegistration))
+
+// Process the registration attempt
 router.post(
     "/registration",
     regValidate.registrationRules(),

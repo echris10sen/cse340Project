@@ -26,6 +26,10 @@ validate.addClassificationRules = () => {
     ];
 }
 
+/*****************************************
+ * Check Classification Data
+ * ***************************************/
+
 validate.checkClassificationData = async (req, res, next) => {
     const { classification_name } = req.body;
     let errors = [];
@@ -99,6 +103,9 @@ validate.addInventoryRules = () => {
     ]
 }
 
+/*****************************************
+ * Check Inventory Data
+ * ***************************************/
 validate.checkInventoryData = async (req, res, next) => {
     const { inv_make, inv_model, inv_year, inv_description, inv_img, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
     let errors = [];
