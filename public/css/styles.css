@@ -58,9 +58,22 @@ main li {
 
 label {
   display: block;
+  font-size: x-large;
+  font-family: var(--heading-font);
+}
+
+input {
+  height: 50px;
+  font-size: x-large;
+  margin-bottom: 1rem;
+  font-family: var(--paragraph-font);
 }
 
 input:required:invalid, input:focus:invalid {
+  background-image: url(../images/site/invalid.png);
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
   border: red solid 2px;
   border-radius: 5px;
   color: red;
@@ -68,10 +81,38 @@ input:required:invalid, input:focus:invalid {
 }
 
 input:required:valid {
-  border: green solid 2px;
+  background-image: url(../images/site/valid.webp);
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: var(--accent1-color) solid 2px;
   border-radius: 5px;
-  color: red;
+  color: var(--text1-color);
   outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+  font-size: larger;
+  margin-bottom: 1rem;
+}
+
+form button{
+  font-size: xx-large;
+  background-color: var(--secondary-color);
+  border: var(--accent1-color) solid 2px;
+  border-radius: 7px;
 }
 /**********************
  * These are ID's 
@@ -168,6 +209,37 @@ input:required:valid {
   height: 50%;
 }
 
+#classification_id {
+  padding: 0 1rem 0 .5rem;
+  border: var(--accent1-color) solid 2px;
+  font-size: x-large;
+  border-radius: 7px;
+  height: 50px;
+}
+
+#addInventorySubmit {
+  display: block;
+  margin: 1rem auto auto auto;
+  height: 50px;
+}
+
+#managmentWrapper a {
+  display: block;
+  text-decoration: none;
+}
+
+#managmentWrapper button {
+  font-size: xx-large;
+  display: block;
+  width: 277px;
+  height: 50px;
+  text-decoration: none;
+  background-color: var(--secondary-color);
+  border: var(--accent1-color) solid 2px;
+  border-radius: 7px;
+  margin: 1rem auto;
+}
+
 /****************************************************
  * These are classes 
  ****************************************************/
@@ -204,6 +276,7 @@ input:required:valid {
 
 .form button {
   display: block;
+  height: 50px;
   font-family: var(--paragraph-font);
   width: auto;
   margin: auto auto;

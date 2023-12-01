@@ -7,6 +7,7 @@ const validate = {}
  * Registration Data Validation Rules
  *************************************/
 validate.registrationRules = () => {
+    console.log("In registrationRules function")
     return [
         // firstname is required and must be string
         body("account_firstname")

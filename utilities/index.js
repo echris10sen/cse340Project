@@ -13,7 +13,7 @@ Util.getNav = async function(req, res, next) {
         list += `<a href="/inv/type/${row.classification_id}" title="See our inventory of ${row.classification_name} vehicles">${row.classification_name}</a>`
         list += "</li>"
     });
-    list += "</ul";
+    list += "</ul>";
     return list;
 }
 
@@ -75,6 +75,18 @@ Util.buildInformation = async function (data) {
         view += `</section>`
     }   
     return view
+}
+
+/***********************************
+ * Build the management view HTML
+ **********************************/
+Util.buildManagementView = async function () {
+    let view = "";
+    view += `<div id="managmentWrapper">`
+    view += `<button type="button" onclick="location.href='/inv/addClassification'">New Classification</button>`
+    view += `<button onclick="location.href='/inv/addInventory'">New Inventory</button>`
+    view += `</div>`
+    return view;
 }
 
 /***********************************

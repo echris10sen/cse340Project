@@ -1,0 +1,54 @@
+<!-- If a title is passed to classification we make a header for it -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+   <% } else {
+       res.redirect('/')
+    }%>
+<%- messages() %>
+
+<% if (errors) { %>
+        <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <%  }) %>
+  </ul>
+<% } %>
+
+<div id="invAddWrapper">
+    <form action="/inv/addInventory" method="POST">
+        <label for="inv_make">Make:</label>
+        <input type="text" name="inv_make" id="inv_make" required placeholder="e.g Kia" title="Please enter the make" value="<%= locals.inv_make %>">
+        <label for="inv_model">Model:</label>
+        <input type="text" name="inv_model" id="inv_model" required placeholder="e.g Sadona" title="Please enter the model" value="<%= locals.inv_model %>">
+        
+        <label for="inv_year">Year:</label>
+        <input type="text" name="inv_year" id="inv_year" required placeholder="e.g 2013" title="Please enter the year (Between 1900 and 2022)" pattern="^(19[0-9]{2}|20[01][0-9]|202[0-2])$" value="<%= locals.inv_year %>">
+        
+        <label for="inv_description">Description:</label>
+        <textarea name="inv_description" id="inv_description" cols="35" rows="3" placeholder="Enter a Description"><%= locals.inv_description %></textarea>
+        
+        <label for="inv_img">Image:</label>
+        <input type="text" name="inv_img" id="inv_img" required title="Please enter the img" value="<%= (locals.inv_img == "" || locals.inv_img == null) ? '/images/vehicles/no-image.png' : locals.inv_img %>">
+        
+        <label for="inv_thumbnail">Thumbnail:</label>
+        <input type="text" name="inv_thumbnail" id="inv_thumbnail" required title="Please enter the thumbnail" value="<%= (locals.inv_thumbnail == "" || locals.inv_img == null ) ? '/images/vehicles/no-image-tn.png' : locals.inv_img %>">
+        
+        <label for="add_inv_price">Price:</label>
+        <input type="number" min="1" name="inv_price" id="add_inv_price" required placeholder="e.g 22000" title="Please enter the price" value="<%= locals.inv_price %>">
+        
+        <label for="inv_miles">Miles:</label>
+        <input type="number" min="0" name="inv_miles" id="inv_miles" required placeholder="e.g 20000" title="Please enter the miles" value="<%= locals.inv_miles %>">
+        
+        <label for="inv_color">Color:</label>
+        <input type="text" name="inv_color" id="inv_color" required placeholder="e.g blue" title="Please enter the color" value="<%= locals.inv_color %>">
+        
+        <label for="classification_id">Classification:</label>
+        <select name="classification_id" id="classification_id">
+            <% classifications.forEach(classification => { %>
+                <option value="<%= classification.classification_id %>" <%= classification.classification_id == locals.classification_id ? 'selected' : '' %>><%= classification.classification_name %></option>
+            <% }) %>
+        </select>
+        
+        <button type="submit" id="addInventorySubmit">Add Inventory</button>
+    </form>
+</div>
