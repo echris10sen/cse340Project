@@ -122,6 +122,7 @@ Util.buildManagementView = async function () {
     view += `<div id="managementGrid">`
     view += `<h2>Manage Inventory</h2>`
     view += `<p>Select a classification from the list to see the items belonging to the classification</p>`
+    view += `</div>`
     return view;
 }
 
@@ -132,10 +133,10 @@ Util.buildAccountTypeView = async function (accountData) {
     console.log(`In buildAccountTypeView: ${accountData.account_type}`);
     let view = "";
     view += `<h2>Welcome ${accountData.account_firstname}</h2>`
-    view += `<button type="button" onclick="location.href='./update'">Update Account Information</button>`
+    view += `<button type="button" id="updateAccountButton" onclick="location.href='./update'">Update Account Information</button>`
     if (accountData.account_type != "Client") {
         view += `<h3>Inventory Management</h3>`
-        view += `<p><a href="/inv/">Manage Inventory</a></p>`
+        view += `<p id="manageLink"><a href="/inv/">Manage Inventory</a></p>`
     }
     return view;
 }

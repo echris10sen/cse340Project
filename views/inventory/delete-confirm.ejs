@@ -30,7 +30,7 @@
         <input type="number" min="1" name="inv_price" id="add_inv_price" required readonly placeholder="e.g 22000" title="Please enter the price" value="<%= locals.inv_price %>">
         
         <button type="submit" id="addInventorySubmit">Delete Vehicle</button>
-        <input type="hidden" name="inv_id" readonly
+        <input type="hidden" name="inv_id" 
         <% if (locals.inv_id) { %> value="<%= locals.inv_id %>"
         <% } %>>
     </form>

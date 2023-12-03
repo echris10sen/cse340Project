@@ -44,6 +44,45 @@ h1 {
   width: fit-content;
 }
 
+h2, h3 {
+  font-family: var(--heading-font);
+  font-size: x-large;
+  width: fit-content;
+}
+
+p {
+  font-family: var(--paragraph-font);
+  font-size: large;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--paragraph-font);
+  margin: 1rem auto
+
+}
+
+td, th {
+  border: 1px solid var(--accent1-color);
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: lightblue;
+}
+
+tr a {
+  text-decoration: none;
+  color: var(--text1-color);
+  display: block;
+  border: solid 2px var(--accent1-color);
+  border-radius: 7px;
+  padding: 1rem;
+  
+}
+
 footer {
   /* background-color: var(--primary-color); */
   padding: 1rem 0 1rem 0;
@@ -238,6 +277,30 @@ form button{
   border: var(--accent1-color) solid 2px;
   border-radius: 7px;
   margin: 1rem auto;
+}
+
+#updateAccountButton{
+  font-size: large;
+  background-color: var(--secondary-color);
+  border: var(--accent1-color) solid 2px;
+  border-radius: 7px;
+  padding: .75rem;
+}
+
+#managementGrid p {
+  margin-left: 1rem;
+}
+
+#manageLink a {
+  display: block;
+  text-decoration: none;
+  color: var(--text1-color);
+  font-size: large;
+  border: var(--accent1-color) solid 2px;
+  border-radius: 7px;
+  padding: .75rem;
+  background-color: var(--secondary-color);
+  width: fit-content;
 }
 
 /****************************************************
