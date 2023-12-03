@@ -15,7 +15,7 @@
 <% } %>
 
 <div id="invAddWrapper">
-    <form action="/inv/addInventory" method="POST">
+    <form action="/inv/update" method="POST" id="updateForm">
         <label for="inv_make">Make:</label>
         <input type="text" name="inv_make" id="inv_make" required placeholder="e.g Kia" title="Please enter the make" value="<%= locals.inv_make %>">
         <label for="inv_model">Model:</label>
@@ -49,6 +49,11 @@
             <% }) %>
         </select>
         
-        <button type="submit" id="addInventorySubmit">Add Inventory</button>
+        <button type="submit" id="addInventorySubmit" disabled>Update Vehicle</button>
+        <input type="hidden" name="inv_id" 
+        <% if (locals.inv_id) { %> value="<%= locals.inv_id %>"
+        <% } %>>
     </form>
 </div>
+
+<script defer type="module" src="../../js/inv-update.js"></script>

@@ -1,0 +1,37 @@
+<!-- If a title is passed to classification we make a header for it -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+   <% } else {
+       res.redirect('/')
+    }%>
+<%- messages() %>
+
+<% if (errors) { %>
+        <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <%  }) %>
+  </ul>
+<% } %>
+
+<div id="invAddWrapper">
+    <p>Confirm Deletion - Warning this cannot be undone.</p>
+    <form action="/inv/delete/" method="POST" id="deleteForm">
+        <label for="inv_make">Make:</label>
+        <input type="text" name="inv_make" id="inv_make" required readonly placeholder="e.g Kia" title="Please enter the make" value="<%= locals.inv_make %>">
+        
+        <label for="inv_model">Model:</label>
+        <input type="text" name="inv_model" id="inv_model" required readonly placeholder="e.g Sadona" title="Please enter the model" value="<%= locals.inv_model %>">
+        
+        <label for="inv_year">Year:</label>
+        <input type="text" name="inv_year" id="inv_year" required readonly placeholder="e.g 2013" title="Please enter the year (Between 1900 and 2022)" pattern="^(19[0-9]{2}|20[01][0-9]|202[0-2])$" value="<%= locals.inv_year %>">
+        
+        <label for="add_inv_price">Price:</label>
+        <input type="number" min="1" name="inv_price" id="add_inv_price" required readonly placeholder="e.g 22000" title="Please enter the price" value="<%= locals.inv_price %>">
+        
+        <button type="submit" id="addInventorySubmit">Delete Vehicle</button>
+        <input type="hidden" name="inv_id" readonly
+        <% if (locals.inv_id) { %> value="<%= locals.inv_id %>"
+        <% } %>>
+    </form>
+</div>

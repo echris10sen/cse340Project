@@ -1,4 +1,6 @@
 invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /*****************************************
@@ -15,6 +17,33 @@ Util.getNav = async function(req, res, next) {
     });
     list += "</ul>";
     return list;
+}
+
+/**************************************
+ * Build links for the site
+ * ***********************************/
+Util.buildHeader = async function (loggedin) {
+    console.log(`loggedin: ${loggedin}`);
+    let header = ""; 
+    header += `<header id="top-header"> 
+        <span class="siteName">
+            <a href="/" title="Return to horme page">CSE Motors</a>
+        </span>`
+    
+    if (!loggedin) {
+        header += 
+        `<div id="tools">
+            <a href="/account/login" title="Click to log in">Login</a>
+        </div>`
+    } else {
+        header += 
+        `<div id="tools">
+            <a href="/account/" title="Click to view your account">My Account</a>
+            <a href="/account/logout" title="Click to log out">Logout</a>
+        </div>`
+    }
+    header += `</header>`;
+    return header;
 }
 
 /**************************************
@@ -90,7 +119,69 @@ Util.buildManagementView = async function () {
     view += `<button type="button" onclick="location.href='/inv/addClassification'">New Classification</button>`
     view += `<button onclick="location.href='/inv/addInventory'">New Inventory</button>`
     view += `</div>`
+    view += `<div id="managementGrid">`
+    view += `<h2>Manage Inventory</h2>`
+    view += `<p>Select a classification from the list to see the items belonging to the classification</p>`
     return view;
+}
+
+/***********************************
+ * Build Account Type View
+ * *********************************/
+Util.buildAccountTypeView = async function (accountData) {
+    console.log(`In buildAccountTypeView: ${accountData.account_type}`);
+    let view = "";
+    view += `<h2>Welcome ${accountData.account_firstname}</h2>`
+    view += `<button type="button" onclick="location.href='./update'">Update Account Information</button>`
+    if (accountData.account_type != "Client") {
+        view += `<h3>Inventory Management</h3>`
+        view += `<p><a href="/inv/">Manage Inventory</a></p>`
+    }
+    return view;
+}
+
+/* ************************************
+ * Middleware to check token validity
+ * **********************************/
+Util.checkJWTToken = (req, res, next) => {
+    try{
+        if (req.cookies.jwt || req.cookies.jwt != undefined) {
+            jwt.verify(
+                req.cookies.jwt,
+                process.env.ACCESS_TOKEN_SECRET,
+                function (err, accountData) {
+                    if (err) {
+                        req.flash("Please log in")
+                        res.clearCookie("jwt")
+                        return res.redirect("/account/login")
+                    }
+                    res.locals.accountData = accountData
+                    res.locals.loggedin = 1
+                    next()
+                })
+        } else {
+            console.log("No JWT Token");
+            res.locals.loggedin = 0
+            console.log(`res.locals.loggedin: ${res.locals.loggedin}`.blue);
+            next()
+        }
+    } catch (err){
+        console.log(err);
+        next()
+    }
+}
+
+/* ************************************
+ * Check Login
+ * **********************************/
+Util.checkLogin = (req, res, next) => {
+    if (res.locals.loggedin) {
+        next()
+    } else {
+        console.log("In checkLogin");
+        req.flash("notice", "Please log in.")
+        return res.redirect("/account/login")
+    }
 }
 
 /***********************************

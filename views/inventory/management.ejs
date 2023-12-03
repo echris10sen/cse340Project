@@ -6,4 +6,17 @@
 
 <%- messages() %>
 
+
 <%- manager %>
+
+<label for="classification_id">Classification:</label>
+<select name="classification_id" id="classification_id">
+    <option value="0">Choose a Classification</option>
+    <% classifications.forEach(classification => { %>
+        <option value="<%= classification.classification_id %>" <%= classification.classification_id == locals.classification_id ? 'selected' : '' %>><%= classification.classification_name %></option>
+    <% }) %>
+</select>
+
+<table id="inventoryDisplay"></table>
+<noscript>JavaScript must be enabled to use this page</noscript>
+<script type="module" src="../../js/inventory.js"></script>

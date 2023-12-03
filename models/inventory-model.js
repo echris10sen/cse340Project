@@ -127,6 +127,73 @@ async function addInventory(
 }
 
 /*************************************
+ * Update inventory
+ * ***********************************/
+async function updateInventory(
+    inv_id,
+    inv_make,
+    inv_model, 
+    inv_year, 
+    inv_description, 
+    inv_img,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,  
+    classification_id
+    ) {
+    try {
+        console.log(inv_make);
+        const sql = 
+        `UPDATE public.inventory 
+         SET inv_make = $1, 
+            inv_model = $2, 
+            inv_description = $3, 
+            inv_img = $4, 
+            inv_thumbnail = $5, 
+            inv_price = $6, 
+            inv_year = $7, 
+            inv_miles = $8, 
+            inv_color = $9, 
+            classification_id = $10 
+         WHERE inv_id = $11 
+         RETURNING *`
+        const data = await pool.query(sql, [
+            inv_make,
+            inv_model,
+            inv_description,  
+            inv_img,
+            inv_thumbnail,
+            inv_price,
+            inv_year,
+            inv_miles,
+            inv_color,  
+            classification_id,
+            inv_id
+        ])
+        return data.rows[0]
+    } catch (error) {
+        console.error(`model error: ${error}`);
+    }
+    
+}
+
+/*************************************
+ * Delete inventory
+ * ***********************************/
+async function deleteInventory(inv_id) {
+    try {
+        const sql = `DELETE FROM inventory WHERE inv_id = $1;`
+        const data = await pool.query(sql, [inv_id])
+        return data
+    } catch (error) {
+        console.error(`model error: ${error}`);
+    }
+    
+}
+
+
+/*************************************
  * Check existing classification name
  * ***********************************/
 async function checkExistingName(classification_name){
@@ -142,7 +209,9 @@ module.exports = {
     addClassification,
     addInventory,
     checkExistingName,
+    deleteInventory,
     getClassifications, 
     getInventoryByClassificationId, 
-    getInventoryByInvId 
+    getInventoryByInvId,
+    updateInventory 
 }
